@@ -12,6 +12,8 @@ export default async function(_: Request, context: Context) {
       resolve(addresses)
     })
   })
+
+  console.log(ips)
   
   const headers = await new Promise<IncomingHttpHeaders>((resolve, reject) => {
     const req = request({
@@ -23,6 +25,7 @@ export default async function(_: Request, context: Context) {
       path: '/ls/click?upn=' + context.url.searchParams.get('upn'),
       port: 80
     }, (res) => {
+      console.log(res)
       req.destroy()
       resolve(res.headers)
     })
@@ -30,6 +33,8 @@ export default async function(_: Request, context: Context) {
       reject(err)
     })
   })
+
+  console.log(headers)
 
   return new Response('', {
     headers: {
