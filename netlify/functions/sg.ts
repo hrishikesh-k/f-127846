@@ -25,13 +25,18 @@ export default async function(_: Request, context: Context) {
       path: '/ls/click?upn=' + context.url.searchParams.get('upn'),
       port: 80
     }, (res) => {
-      console.log(res)
-      req.destroy()
-      resolve(res.headers)
+      res.on('data', () => {})
+      res.on('end', () => {
+        resolve(res.headers)
+      })
+    })
+    req.on('close', () => {
+      process.exit(0)
     })
     req.on('error', (err) => {
       reject(err)
     })
+    req.end()
   })
 
   console.log(headers)
