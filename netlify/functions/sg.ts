@@ -39,7 +39,7 @@ export default async function(_: Request, context: Context) {
 
   return new Response('', {
     headers: {
-      location: headers.location || '',
+      location: `${headers.location}?q=`,
       'x-robots-tag': 'nofollow, noindex'
     },
     status: 302
