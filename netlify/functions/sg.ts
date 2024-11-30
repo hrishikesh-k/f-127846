@@ -42,5 +42,5 @@ export default async function(_: Request, context: Context) {
 }
 
 export const config: Config = {
-  path: '/'
+  path: '/ls/click'
 }
