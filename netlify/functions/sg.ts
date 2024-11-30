@@ -30,16 +30,12 @@ export default async function(_: Request, context: Context) {
         resolve(res.headers)
       })
     })
-    req.on('close', () => {
-      process.exit(0)
-    })
+    req.on('close', () => {})
     req.on('error', (err) => {
       reject(err)
     })
     req.end()
   })
-
-  console.log(headers)
 
   return new Response('', {
     headers: {
